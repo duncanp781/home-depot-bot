@@ -13,3 +13,4 @@ slack-sdk==3.21.3
 slackclient==2.9.4
 requests
 bs4
+lxml
