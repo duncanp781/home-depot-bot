@@ -20,12 +20,13 @@ def respond_to_hello(message, say):
 
 @app.message()
 def respond_to_message(message, say):
-    # if message.get('channel') == 'home-depot-bot':
-    # channel id = "C05AG2JB2BS"
     say("Thank you for your question, one moment.")
     text = message.get('text')
     response = helper_agent.run(text)
     say(response)
+
+
+
 
 helper_agent = create_homedepot_agent()
 if __name__ == "__main__":
