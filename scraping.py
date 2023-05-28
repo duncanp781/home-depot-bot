@@ -96,16 +96,13 @@ def get_reviews(page):
   review_count = None
   if star_span: 
     style = star_span.get('style')
-    print(style)
     match = re.search(r'\d+\.?\d+', style)
-    print(match)
     if match:
       width = float(match.group())
       stars =  str(round(width/20, 1))
   review_span = page.select_one('span[class="product-details__review-count"]')
   if review_span:
     review_count = ''.join([char for char in review_span.text if char.isdigit()])
-    print(review_count)
   if stars and review_count:
     return f"The product gets {stars} stars over {review_count} reviews"
   else:
@@ -140,5 +137,3 @@ def get_homedepot_page_info(url):
     return out
 
 scraping_tools = [get_homedepot_pages, get_homedepot_page_info]
-
-test_getter(get_reviews)
