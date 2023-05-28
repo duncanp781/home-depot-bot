@@ -2,5 +2,5 @@ slack_bolt
 langchain
 requests
 bs4
-flask
+Flask>=2.2.2
 gunicorn
