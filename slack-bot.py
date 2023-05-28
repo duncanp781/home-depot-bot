@@ -5,8 +5,9 @@ from flask import Flask, request, make_response
 
 import os
 
-from dotenv import load_dotenv
-load_dotenv()
+# Dont use dotenv for deployment
+# from dotenv import load_dotenv
+# load_dotenv()
 
 
 slack_token = os.environ.get("SLACK_BOT_TOKEN")

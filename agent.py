@@ -16,8 +16,9 @@ from scraping import scraping_tools
 
 import re
 
-from dotenv import load_dotenv
-load_dotenv()
+# Dont use dotenv for deployment
+# from dotenv import load_dotenv
+# load_dotenv()
 
 class CustomOutputParser(AgentOutputParser):
     def parse(self, llm_output: str) -> Union[AgentAction, AgentFinish]:
