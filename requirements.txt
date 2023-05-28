@@ -1,10 +1,6 @@
 slack_bolt
 langchain
-re
-json
-random
 requests
 bs4
-os
 flask
 gunicorn
