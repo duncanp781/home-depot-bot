@@ -11,3 +11,5 @@ slack==0.0.2
 slack-bolt==1.18.0
 slack-sdk==3.21.3
 slackclient==2.9.4
+requests
+bs4
