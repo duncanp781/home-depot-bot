@@ -1,5 +1,6 @@
 from slack_bolt import App
 from agent import create_homedepot_agent
+from flask import Flask, request
 
 import os
 
@@ -26,7 +27,12 @@ def respond_to_message(message, say):
     say(response)
 
 
+flask_app = Flask(__name__)
+handler = SlackRequestHandler(app)
 
+@flask_app.route("/slack/events", methods=["POST"])
+def slack_events():
+    return handler.handle(request)
 
 helper_agent = create_homedepot_agent()
 if __name__ == "__main__":
