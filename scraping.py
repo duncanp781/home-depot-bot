@@ -92,10 +92,14 @@ def get_details(page):
 
 def get_reviews(page):
   star_span = page.select_one('span[class="stars--c43xm"]')
+  stars = None
+  review_count = None
   if star_span: 
     style = star_span.get('style')
-    width = int(''.join([char for char in style if char.isdigit()]))
-    stars =  str(round(width/20, 1))
+    match = re.search(r'(\d+.\d+)', style)
+    if match:
+      width = float(match.group())
+      stars =  str(round(width/20, 1))
   review_span = page.select_one('span[class="product-details__review-count"]')
   if review_span:
     review_count = ''.join([char for char in review_span.text if char.isdigit()])
@@ -103,7 +107,7 @@ def get_reviews(page):
   if stars and review_count:
     return f"The product gets {stars} stars over {review_count} reviews"
   else:
-    "Could not find review information"
+    return "Could not find review information"
 
 def test_getter(getter):
   url = "https://homedepot.com/p/Trexonic-Portable-Screen-Size-Class-14-in-Rechargeable-LED-HDTV-985110646M/310955410"
