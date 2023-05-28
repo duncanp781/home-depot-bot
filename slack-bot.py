@@ -1,7 +1,7 @@
 from slack_bolt import App
 from slack_bolt.adapter.flask import SlackRequestHandler
 from agent import create_homedepot_agent
-from flask import Flask, request
+from flask import Flask, request, make_response
 
 import os
 
@@ -33,6 +33,8 @@ handler = SlackRequestHandler(app)
 
 @flask_app.route("/slack/events", methods=["POST"])
 def slack_events():
+    if "challenge" in request.json:
+        return make_response(request.json["challenge"], 200, {"content_type": "application/json"})
     return handler.handle(request)
 
 helper_agent = create_homedepot_agent()
